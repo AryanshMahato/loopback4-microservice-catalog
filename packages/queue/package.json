@@ -1,0 +1,64 @@
+{
+    "name": "@sourceloop/queue",
+    "version": "0.0.1",
+    "description": "message-bus-queue-connectors",
+    "keywords": [
+        "loopback-extension",
+        "loopback"
+    ],
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "engines": {
+        "node": ">=18"
+    },
+    "scripts": {
+        "build": "lb-tsc",
+        "build:watch": "lb-tsc --watch",
+        "lint": "npm run eslint && npm run prettier:check",
+        "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+        "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
+        "prettier:check": "npm run prettier:cli -- -l",
+        "prettier:fix": "npm run prettier:cli -- --write",
+        "eslint": "eslint --report-unused-disable-directives .",
+        "eslint:fix": "npm run eslint -- --fix",
+        "pretest": "npm run rebuild",
+        "test": "lb-mocha --allow-console-logs \"dist/__tests__\"",
+        "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js",
+        "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
+        "rebuild": "npm run clean && npm run build",
+        "postinstall": "npm run build",
+        "prune": "npm prune --production"
+    },
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "author": "sadarunnisa-sf<sadarunnisa.sutar@sourcefuse.com>",
+    "license": "MIT",
+    "files": [
+        "README.md",
+        "dist",
+        "src",
+        "!*/__tests__"
+    ],
+    "peerDependencies": {
+        "@loopback/core": "^6.0.2",
+        "@sourceloop/core": "^14.1.1"
+    },
+    "dependencies": {
+        "@loopback/rest": "^14.0.2",
+        "@loopback/rest-explorer": "^7.0.2",
+        "tslib": "^2.6.2",
+        "@aws-sdk/client-sqs": "^3.637.0"
+    },
+    "devDependencies": {
+        "@loopback/build": "^11.0.2",
+        "source-map-support": "^0.5.21",
+        "@loopback/core": "^6.0.2",
+        "@loopback/testlab": "^7.0.2",
+        "@types/node": "^18.11.9",
+        "@loopback/eslint-config": "^15.0.2",
+        "eslint": "^8.57.0",
+        "typescript": "~5.2.2"
+    }
+}
